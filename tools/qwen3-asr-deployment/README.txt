@@ -1,7 +1,7 @@
 Qwen3-ASR 部署包
 ================
 
-本目录用于在本地或服务器上部署 Qwen3-ASR 语音识别推理服务，供 scripts/003subtitles.py 调用。
+本目录用于在本地或服务器上部署 Qwen3-ASR 语音识别推理服务，供 scripts/004subtitles.py 调用。
 
 快速开始:
 1. 安装依赖: pip install -r requirements_server.txt

@@ -396,24 +396,24 @@ def main():
         assets_path = base_dir / config['paths']['assets']
         relative_path = folder.relative_to(assets_path)
 
-        # 004output: 转场后的视频（未烧录字幕），保持与assets相同的目录结构
+        # transition: 转场后的视频（未烧录字幕），保持与assets相同的目录结构
         # 例如：assets/高手下山：美女请留步/高手下山，美女请留步01
-        #   -> output/004output/高手下山：美女请留步/高手下山，美女请留步01.mp4
-        output_004_dir = base_dir / config['paths']['output'] / "004output" / relative_path.parent
+        #   -> output/transition/高手下山：美女请留步/高手下山，美女请留步01.mp4
+        output_004_dir = base_dir / config['paths']['output'] / "transition" / relative_path.parent
         output_004_dir.mkdir(parents=True, exist_ok=True)
         output_004 = output_004_dir / f"{folder.name}.mp4"
 
-        # 003output: 字幕烧录后的最终视频，保持与assets相同的目录结构
-        output_003_dir = base_dir / config['paths']['output'] / "003output" / relative_path.parent
+        # final: 字幕烧录后的最终视频，保持与assets相同的目录结构
+        output_003_dir = base_dir / config['paths']['output'] / "final" / relative_path.parent
         output_003_dir.mkdir(parents=True, exist_ok=True)
         final_output = output_003_dir / f"{folder.name}.mp4"
     except ValueError:
         # 如果不在assets下，使用简化的输出结构
-        output_004_dir = base_dir / config['paths']['output'] / "004output"
+        output_004_dir = base_dir / config['paths']['output'] / "transition"
         output_004_dir.mkdir(parents=True, exist_ok=True)
         output_004 = output_004_dir / f"{folder.name}.mp4"
 
-        output_003_dir = base_dir / config['paths']['output'] / "003output"
+        output_003_dir = base_dir / config['paths']['output'] / "final"
         output_003_dir.mkdir(parents=True, exist_ok=True)
         final_output = output_003_dir / f"{folder.name}.mp4"
     
@@ -660,7 +660,7 @@ def main():
         cmd = [
             sys.executable, str(script),
             '--folder', str(transition_input_dir),
-            '-o', str(output_004)  # 输出到 004output
+            '-o', str(output_004)  # 输出到 transition
         ]
         
         if bgm:
@@ -674,7 +674,7 @@ def main():
             print(f"📁 转场输出: {output_004}")
             print(f"{'='*60}")
 
-            # 给 004output 也添加封面（与最终视频保持一致）
+            # 给 transition 也添加封面（与最终视频保持一致）
             cover_image_004 = None
             for ext in ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']:
                 cover_path = folder / f"封面{ext}"
@@ -683,7 +683,7 @@ def main():
                     break
 
             if cover_image_004 and output_004.exists():
-                print(f"\n📸 给004output添加封面: {cover_image_004.name}")
+                print(f"\n📸 给transition添加封面: {cover_image_004.name}")
                 temp_004_cover = output_004.parent / f"temp_cover_{output_004.name}"
                 cmd_cover = [
                     'ffmpeg', '-y',
@@ -704,9 +704,9 @@ def main():
                 if r.returncode == 0 and temp_004_cover.exists():
                     import shutil
                     shutil.move(str(temp_004_cover), str(output_004))
-                    print(f"   ✅ 004output封面添加成功")
+                    print(f"   ✅ transition封面添加成功")
                 else:
-                    print(f"   ⚠️  004output封面添加失败，保留原视频")
+                    print(f"   ⚠️  transition封面添加失败，保留原视频")
                     if temp_004_cover.exists():
                         temp_004_cover.unlink()
         else:

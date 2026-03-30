@@ -28,8 +28,8 @@ temp_output/
 *.tmp
 *.temp
 
-# 输出文件
-output/
+# 输出文件（只排除中间过程产物，示例输出见下方例外规则）
+output/transition/
 trimmed_videos/
 
 # 模型文件
@@ -84,3 +84,7 @@ scripts/output/
 *.zip
 *.7z
 *.rar
+
+# 示例项目（允许提交，作为效果参考）
+!assets/重生成为超级财阀/**
+!output/final/重生成为超级财阀/**

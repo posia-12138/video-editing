@@ -19,5 +19,5 @@ jobs:
           python -m py_compile run_all.py
           python -m py_compile scripts/001remove_black.py
           python -m py_compile scripts/002separate.py
-          python -m py_compile scripts/003subtitles.py
-          python -m py_compile scripts/004transition_simple.py
+          python -m py_compile scripts/003transition_simple.py
+          python -m py_compile scripts/004subtitles.py

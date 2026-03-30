@@ -21,8 +21,8 @@
     "scripts": {
       "remove_black": "scripts/001remove_black.py",
       "separate": "scripts/002separate.py",
-      "subtitles": "scripts/003subtitles.py",
-      "transition": "scripts/004transition_simple.py"
+      "subtitles": "scripts/004subtitles.py",
+      "transition": "scripts/003transition_simple.py"
     }
   },
 
