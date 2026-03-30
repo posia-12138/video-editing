@@ -1,0 +1,17 @@
+# 核心依赖
+opencv-python
+numpy
+requests
+
+# 音频处理（步骤2 声道分离）
+librosa
+soundfile
+
+# PyTorch（步骤2/4 GPU 加速，建议安装 CUDA 版本）
+# 见 https://pytorch.org/get-started/locally/ 选择对应 CUDA 版本安装
+torch
+torchaudio
+
+# ffmpeg Python 封装（步骤3 转场拼接）
+# 也可直接用 libs/ffmpeg-python 本地安装：pip install -e libs/ffmpeg-python
+ffmpeg-python

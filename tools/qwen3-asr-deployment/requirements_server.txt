@@ -1,0 +1,32 @@
+# Qwen3-ASR 服务器部署依赖
+
+# PyTorch (需要根据CUDA版本选择)
+# GPU版本 (CUDA 11.8):
+# torch>=2.0.0
+# 安装命令: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# CPU版本:
+# torch>=2.0.0
+# 安装命令: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# Qwen3-ASR 核心依赖
+transformers==4.57.6
+accelerate==1.12.0
+safetensors>=0.4.3
+
+# 音频处理
+librosa>=0.10.1
+soundfile>=0.12.1
+audioread>=3.1.0
+
+# 其他依赖
+numpy>=1.17
+scipy>=1.1.0
+tqdm>=4.27
+
+# 可选：FlashAttention 2 (需要NVIDIA GPU和CUDA)
+# flash-attn>=2.0.0
+# 安装命令: pip install flash-attn --no-build-isolation
+
+# 可选：ModelScope (用于下载模型)
+# modelscope

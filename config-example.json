@@ -1,0 +1,53 @@
+{
+  "_comment": "视频处理流程配置文件（示例）。复制本文件为 config.json 并填入真实 API Key。",
+  "_processing_order": "步骤1 黑屏检测 -> 步骤2 声道分离 -> 步骤3 转场拼接 -> 步骤4 字幕生成与烧录",
+
+  "_keys_comment": {
+    "kimi_api_key": "必填。用于步骤4字幕断句纠错。申请地址：https://platform.moonshot.cn/",
+    "deepseek_api_key": "可选。备用纠错模型，当前版本暂未启用，留空即可。",
+    "msst_conda_env": "步骤2声道分离使用的 conda 环境名，与创建时保持一致。"
+  },
+
+  "kimi_api_key": "YOUR_KIMI_API_KEY",
+  "deepseek_api_key": "",
+  "msst_conda_env": "msst",
+
+  "paths": {
+    "_comment": "所有路径均相对于项目根目录，一般不需要修改。",
+    "assets": "assets",
+    "temp_output": "temp_output",
+    "output": "output",
+    "libs": "libs",
+    "scripts": {
+      "remove_black": "scripts/001remove_black.py",
+      "separate": "scripts/002separate.py",
+      "subtitles": "scripts/003subtitles.py",
+      "transition": "scripts/004transition_simple.py"
+    }
+  },
+
+  "remove_black": {
+    "_comment": "步骤1 黑屏检测参数",
+    "brightness_threshold": 50,
+    "fade_threshold": 110,
+    "min_duration": 0.1,
+    "check_text": true,
+    "use_ai": false
+  },
+
+  "separate": {
+    "_comment": "步骤2 声道分离参数",
+    "output_format": "wav"
+  },
+
+  "subtitles": {
+    "_comment": "步骤4 字幕生成参数。script_dir 为剧本目录路径（null 表示自动查找）。",
+    "script_dir": null
+  },
+
+  "transition": {
+    "_comment": "步骤3 转场拼接参数",
+    "use_random_transitions": true,
+    "bgm_volume": 0.3
+  }
+}

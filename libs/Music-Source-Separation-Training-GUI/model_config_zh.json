@@ -1,0 +1,304 @@
+{
+    "vocal_models": {
+        "None": "禁用人声分离模块",
+        "MelBandRoformer_kim.ckpt": "【推荐】SDR基本等于1297和1296但用时减半，人声和伴奏都有不错的效果",
+        "becruily_deux.ckpt": "【推荐】Fullness多轨模型，人声/伴奏双轨，特点是人声轨Fullness极高(23.25)对细微和声捕捉极强，伴奏轨几乎没有相位问题可以直接用。",
+        "logic_roformer.pt": "【推荐】多轨分离模型，效果惊艳，可分离贝斯，鼓，钢琴，吉他，人声，其他共六轨，该模型目前来看除人声外各器乐SDR指标都是最佳。",
+        "bs_roformer_anvuew_sdr_12.45.ckpt": "【推荐】专精人声分离模型，听感相当干净，SDR得分也很高，但有时人声听起来略单薄，不如其他模型饱满。",
+        "BS-Roformer-Resurrection.ckpt": "专精人声分离模型，保留更多人声与和声细节，SDR相当高（11.34）",
+        "mel_band_roformer_vocals_becruily.ckpt": "使用fullness指标的专精人声分离模型，保留更多细节，效果非常好。（fullness更注重声音的饱满细节，但会引入更多噪音）",
+        "BS-Roformer-Resurrection-Inst.ckpt": "fullness专精伴奏模型，听感相当干净舒适，没有像其他同类模型那么多的噪声，大多数歌曲的效果都相当棒。",
+        "BS_ResurrectioN.ckpt": "专精伴奏分离模型，对BS Roformer Resurrection Inst的微调，更高的fullness，但会漏一些器乐到人声中去，尤其是一些低沉的pad",
+        "inst_v1e.ckpt": "使用fullness指标的专精伴奏分离模型，听感更接近原版伴奏。（fullness更注重声音的饱满细节，但会引入更多噪音）",
+        "model_bs_roformer_ep_317_sdr_12.9755.ckpt": "注：1297的SDR稍高，但有反馈指出可能引入极高频上的噪音",
+        "model_bs_roformer_ep_368_sdr_12.9628.ckpt": "1296的SDR略低，但没有极高频上的噪音",
+        "big_beta5e.ckpt": "使用fullness指标的非常巨大的模型，为目前fullness得分最高的人声分离模型（fullness更注重声音的饱满细节，但会引入更多噪音）",
+        "kimmel_unwa_ft2_bleedless.ckpt": "对kim模型微调的模型，为人声bleedless指标目前最高(39.30)，但SDR与fullness(15.77->16.26)都略低于原版"
+    },
+    "kara_models": {
+        "None": "禁用和声分离模块",
+        "bs_roformer_karaoke_frazer_becruily.ckpt": "【推荐】即使贴很近的和声垫音也可以处理相当一部分，总体偏保守但在辨别主唱方面相当好，但请注意它并不严格保证单一主唱。",
+        "karaoke_bs_roformer_anvuew.ckpt": "【推荐】和frazer_becruily不相伯仲的模型，有些歌表现更好有些更差，此外它似乎可以去掉一些电话音的音效。",
+        "mel_band_roformer_karaoke_becruily.ckpt": "激进，能更好的区分和声和主唱，听起来更饱满，在一些歌里比Aufr33的模型表现更好，不过和其他模型一样依然不是特别能处理极端情况。",
+        "bs_karaoke_gabox_IS.ckpt": "实验性的模型，各方面表现很像是更保守一些的frazer_becruily模型，偶尔也会比前者好",
+        "mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt": "激进，但性能比UVR现有模型都要好非常多，若剥残人声可考虑禁用该模块而依靠混响和声模块去和声",
+        "kar_gabox.ckpt": "略微保守的和声模型，总体表现和前者很相似，比前者能接受更高的高音，没有经过太多测试不过分离效果也很不错"
+    },
+    "reverb_models": {
+        "None": "禁用混响和声分离模块",
+        "dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt": "【推荐】目前SDR最高的模型，也有一些去除和声的能力。",
+        "dereverb_room_anvuew_sdr_13.7432.ckpt": "【推荐】专精单声道房混模型，在领域内效果非常好，分离出来的干声更“实”，请注意它只接受单声道输入（不过推理会自动处理）",
+        "dereverb_echo_mbr_fused_0.5_v2_0.25_big_0.25_super.ckpt": "【推荐】可以去除delay和echo的模型，在混响特别大的时候优于anvuew的两个模型",
+        "dereverb_mel_band_roformer_mono_anvuew_sdr_20.4029.ckpt": "可以去除单声道混响，之前SDR最高的模型，但基本无法去除和声。",
+        "dereverb_mel_band_roformer_anvuew_sdr_19.1729.ckpt": "之前SDR得分最高的混响模型，亦有着不错的去和声能力。",
+        "dereverb_mel_band_roformer_less_aggressive_anvuew_sdr_18.8050.ckpt": "比1917保守，若有剥残情况下选用",
+        "deverb_bs_roformer_8_384dim_10depth.ckpt": "使用了更多数据训练的新bs模型，SDR更高，在和声分离上比mel系的要保守",
+        "deverb_bs_roformer_8_256dim_8depth.ckpt": "旧的bs模型",
+        "deverb_mel_band_roformer_8_256dim_6depth.ckpt": "非常激进的去混响，视曲目不同可能会把人声剥残，但更激进也在一些场合有更好的效果",
+        "deverb_mel_band_roformer_8_512dim_12depth.ckpt": "比8_256_6更大的网络带来稍高的SDR的同时消耗3倍以上推理时间",
+        "deverb_mel_band_roformer_ep_27_sdr_10.4567.ckpt": "最初版模型，在去混响和去和声上有不错的平衡"
+    },
+    "other_models": {
+        "None": "禁用其他模块",
+        "model_mel_band_roformer_ep_3_sdr_14.8359.ckpt": "【分离】用以分离电影BGM的模型，可以分离出带音效的人声。",
+        "denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt": "【降噪】使用SDR 27.9959的通常版模型",
+        "denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt": "【降噪】使用SDR 27.9768的激进版模型",
+        "model_bandit_plus_dnr_sdr_11.47.chpt": "【降噪】可以去除鼠标键盘生活音，一些效果音，以及音量显著低于主人声的声音，但有不小概率意外去除主人声，尤其是声音情绪波动大的情况。",
+        "bleed_suppressor_v1.ckpt": "【降噪】一般用于配合fullness模型使用，抑制泄露，如果你认为噪音太多可以试试同时启用这个模型，标Bleed的是噪音。",
+        "Apollo_LQ_MP3_restoration.ckpt": "【修复】用于修复mp3音质的模型，修复至44.1 kHz",
+        "aspiration_mel_band_roformer_sdr_18.9845.ckpt": "【气声】用于分离各种气口的气声，例如说吸气声",
+        "aspiration_mel_band_roformer_less_aggr_sdr_18.1201.ckpt": "【气声】保守一些版本的气声分离",
+        "mel_band_roformer_crowd_aufr33_viperx_sdr_8.7144.ckpt": "【降噪】用于分离背景嘈杂说话声的模型，但对音质影响很大",
+        "bs_roformer_male_female_by_aufr33_sdr_7.2889.ckpt": "【分离】能够分离同时讲话的男女声的模型，仅能够分离同时讲话的情况"
+    },
+    "config_paths": {
+        "MelBandRoformer_kim.ckpt": [
+            "configs/config_vocals_mel_band_roformer_kim.yaml",
+            "configs/config_vocals_mel_band_roformer_kim-fast.yaml"
+        ],
+        "model_bs_roformer_ep_317_sdr_12.9755.ckpt": [
+            "configs/model_bs_roformer_ep_317_sdr_12.9755.yaml",
+            "configs/model_bs_roformer_ep_317_sdr_12.9755-fast.yaml"
+        ],
+        "model_bs_roformer_ep_368_sdr_12.9628.ckpt": [
+            "configs/model_bs_roformer_ep_368_sdr_12.9628.yaml",
+            "configs/model_bs_roformer_ep_368_sdr_12.9628-fast.yaml"
+        ],
+        "mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt": [
+            "configs/config_mel_band_roformer_karaoke.yaml",
+            "configs/config_mel_band_roformer_karaoke-fast.yaml"
+        ],
+        "dereverb_mel_band_roformer_anvuew_sdr_19.1729.ckpt": [
+            "configs/dereverb_mel_band_roformer_anvuew.yaml",
+            "configs/dereverb_mel_band_roformer_anvuew-fast.yaml"
+        ],
+        "dereverb_mel_band_roformer_less_aggressive_anvuew_sdr_18.8050.ckpt": [
+            "configs/dereverb_mel_band_roformer_anvuew.yaml",
+            "configs/dereverb_mel_band_roformer_anvuew-fast.yaml"
+        ],
+        "deverb_bs_roformer_8_384dim_10depth.ckpt": [
+            "configs/deverb_bs_roformer_8_384dim_10depth.yaml",
+            "configs/deverb_bs_roformer_8_384dim_10depth-fast.yaml"
+        ],
+        "deverb_bs_roformer_8_256dim_8depth.ckpt": [
+            "configs/deverb_bs_roformer_8_256dim_8depth.yaml",
+            "configs/deverb_bs_roformer_8_256dim_8depth-fast.yaml"
+        ],
+        "deverb_mel_band_roformer_8_256dim_6depth.ckpt": [
+            "configs/8_256_6_deverb_mel_band_roformer_8_256dim_6depth.yaml",
+            "configs/8_256_6_deverb_mel_band_roformer_8_256dim_6depth-fast.yaml"
+        ],
+        "deverb_mel_band_roformer_8_512dim_12depth.ckpt": [
+            "configs/8_512_12_deverb_mel_band_roformer_8_512dim_12depth.yaml",
+            "configs/8_512_12_deverb_mel_band_roformer_8_512dim_12depth-fast.yaml"
+        ],
+        "deverb_mel_band_roformer_ep_27_sdr_10.4567.ckpt": [
+            "configs/deverb_mel_band_roformer.yaml",
+            "configs/deverb_mel_band_roformer-fast.yaml"
+        ],
+        "denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt": [
+            "configs/model_mel_band_roformer_denoise.yaml",
+            "configs/model_mel_band_roformer_denoise-fast.yaml"
+        ],
+        "denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt": [
+            "configs/model_mel_band_roformer_denoise.yaml",
+            "configs/model_mel_band_roformer_denoise-fast.yaml"
+        ],
+        "Apollo_LQ_MP3_restoration.ckpt": [
+            "configs/config_apollo_LQ_MP3_restoration.yaml",
+            "configs/config_apollo_LQ_MP3_restoration-fast.yaml"
+        ],
+        "aspiration_mel_band_roformer_sdr_18.9845.ckpt": [
+            "configs/config_aspiration_mel_band_roformer.yaml",
+            "configs/config_aspiration_mel_band_roformer-fast.yaml"
+        ],
+        "aspiration_mel_band_roformer_less_aggr_sdr_18.1201.ckpt": [
+            "configs/config_aspiration_mel_band_roformer.yaml",
+            "configs/config_aspiration_mel_band_roformer-fast.yaml"
+        ],
+        "mel_band_roformer_crowd_aufr33_viperx_sdr_8.7144.ckpt": [
+            "configs/model_mel_band_roformer_crowd_aufr33_viperx.yaml",
+            "configs/model_mel_band_roformer_crowd_aufr33_viperx-fast.yaml"
+        ],
+        "mel_band_roformer_vocals_becruily.ckpt": [
+            "configs/config_vocals_becruily.yaml",
+            "configs/config_vocals_becruily-fast.yaml"
+        ],
+        "inst_v1e.ckpt": [
+            "configs/config_melbandroformer_inst.yaml",
+            "configs/config_melbandroformer_inst-fast.yaml"
+        ],
+        "big_beta5e.ckpt": [
+            "configs/big_beta5e.yaml",
+            "configs/big_beta5e-fast.yaml"
+        ],
+        "bleed_suppressor_v1.ckpt": [
+            "configs/config_bleed_suppressor_v1.yaml",
+            "configs/config_bleed_suppressor_v1-fast.yaml"
+        ],
+        "dereverb_echo_mbr_fused_0.5_v2_0.25_big_0.25_super.ckpt": [
+            "configs/config_dereverb_echo_mbr_v2.yaml",
+            "configs/config_dereverb_echo_mbr_v2-fast.yaml"
+        ],
+        "dereverb_mel_band_roformer_mono_anvuew_sdr_20.4029.ckpt": [
+            "configs/dereverb_mel_band_roformer_anvuew.yaml",
+            "configs/dereverb_mel_band_roformer_anvuew-fast.yaml"
+        ],
+        "bs_roformer_male_female_by_aufr33_sdr_7.2889.ckpt": [
+            "configs/config_chorus_male_female_bs_roformer.yaml",
+            "configs/config_chorus_male_female_bs_roformer-fast.yaml"
+        ],
+        "kar_gabox.ckpt": [
+            "configs/config_mel_band_roformer_karaoke.yaml",
+            "configs/config_mel_band_roformer_karaoke-fast.yaml"
+        ],
+        "model_bandit_plus_dnr_sdr_11.47.chpt": [
+            "configs/config_dnr_bandit_bsrnn_multi_mus64.yaml",
+            "configs/config_dnr_bandit_bsrnn_multi_mus64-fast.yaml"
+        ],
+        "kimmel_unwa_ft2_bleedless.ckpt": [
+            "configs/config_kimmel_unwa_ft.yaml",
+            "configs/config_kimmel_unwa_ft-fast.yaml"
+        ],
+        "mel_band_roformer_karaoke_becruily.ckpt": [
+            "configs/config_karaoke_becruily.yaml",
+            "configs/config_karaoke_becruily-fast.yaml"
+        ],
+        "BS_ResurrectioN.ckpt": [
+            "configs/BS-Roformer-Resurrection-Inst-Config.yaml",
+            "configs/BS-Roformer-Resurrection-Inst-Config-fast.yaml"
+        ],
+        "logic_roformer.pt": [
+            "configs/logic_pro_config_v1.yaml",
+            "configs/logic_pro_config_v1-fast.yaml"
+        ],
+        "bs_roformer_karaoke_frazer_becruily.ckpt": [
+            "configs/config_karaoke_frazer_becruily.yaml",
+            "configs/config_karaoke_frazer_becruily-fast.yaml"
+        ],
+        "dereverb_room_anvuew_sdr_13.7432.ckpt": [
+            "configs/dereverb_room_anvuew.yaml",
+            "configs/dereverb_room_anvuew-fast.yaml"
+        ],
+        "BS-Roformer-Resurrection.ckpt": [
+            "configs/BS-Roformer-Resurrection-Config.yaml",
+            "configs/BS-Roformer-Resurrection-Config-fast.yaml"
+        ],
+        "karaoke_bs_roformer_anvuew.ckpt": [
+            "configs/karaoke_bs_roformer_anvuew.yaml",
+            "configs/karaoke_bs_roformer_anvuew-fast.yaml"
+        ],
+        "bs_karaoke_gabox_IS.ckpt": [
+            "configs/karaoke_bs_roformer.yaml",
+            "configs/karaoke_bs_roformer-fast.yaml"
+        ],
+        "BS-Roformer-Resurrection-Inst.ckpt": [
+            "configs/BS-Roformer-Resurrection-Inst-Config.yaml",
+            "configs/BS-Roformer-Resurrection-Inst-Config-fast.yaml"
+        ],
+        "bs_roformer_anvuew_sdr_12.45.ckpt": [
+            "configs/bs_roformer_anvuew_sdr_12.45_config.yaml",
+            "configs/bs_roformer_anvuew_sdr_12.45_config-fast.yaml"
+        ],
+        "becruily_deux.ckpt": [
+            "configs/config_deux_becruily.yaml",
+            "configs/config_deux_becruily-fast.yaml"
+        ],
+        "model_mel_band_roformer_ep_3_sdr_14.8359.ckpt": [
+            "configs/config_vocalsandeffects_mel_band_roformer.yaml",
+            "configs/config_vocalsandeffects_mel_band_roformer-fast.yaml"
+        ],
+        "dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt": [
+            "configs/config_dereverb_bs_roformer_anvuew_sdr_22.5050.yaml",
+            "configs/config_dereverb_bs_roformer_anvuew_sdr_22.5050-fast.yaml"
+        ]
+    },
+    "model_types": {
+        "MelBandRoformer_kim.ckpt": "mel_band_roformer",
+        "model_bs_roformer_ep_317_sdr_12.9755.ckpt": "bs_roformer",
+        "model_bs_roformer_ep_368_sdr_12.9628.ckpt": "bs_roformer",
+        "mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt": "mel_band_roformer",
+        "dereverb_mel_band_roformer_anvuew_sdr_19.1729.ckpt": "mel_band_roformer",
+        "dereverb_mel_band_roformer_less_aggressive_anvuew_sdr_18.8050.ckpt": "mel_band_roformer",
+        "deverb_bs_roformer_8_384dim_10depth.ckpt": "bs_roformer",
+        "deverb_bs_roformer_8_256dim_8depth.ckpt": "bs_roformer",
+        "deverb_mel_band_roformer_8_256dim_6depth.ckpt": "mel_band_roformer",
+        "deverb_mel_band_roformer_8_512dim_12depth.ckpt": "mel_band_roformer",
+        "deverb_mel_band_roformer_ep_27_sdr_10.4567.ckpt": "mel_band_roformer",
+        "denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt": "mel_band_roformer",
+        "denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt": "mel_band_roformer",
+        "Apollo_LQ_MP3_restoration.ckpt": "apollo",
+        "aspiration_mel_band_roformer_sdr_18.9845.ckpt": "mel_band_roformer",
+        "aspiration_mel_band_roformer_less_aggr_sdr_18.1201.ckpt": "mel_band_roformer",
+        "mel_band_roformer_crowd_aufr33_viperx_sdr_8.7144.ckpt": "mel_band_roformer",
+        "mel_band_roformer_vocals_becruily.ckpt": "mel_band_roformer",
+        "inst_v1e.ckpt": "mel_band_roformer",
+        "big_beta5e.ckpt": "mel_band_roformer",
+        "bleed_suppressor_v1.ckpt": "mel_band_roformer",
+        "dereverb_echo_mbr_fused_0.5_v2_0.25_big_0.25_super.ckpt": "mel_band_roformer",
+        "dereverb_mel_band_roformer_mono_anvuew_sdr_20.4029.ckpt": "mel_band_roformer",
+        "bs_roformer_male_female_by_aufr33_sdr_7.2889.ckpt": "bs_roformer",
+        "kar_gabox.ckpt": "mel_band_roformer",
+        "model_bandit_plus_dnr_sdr_11.47.chpt": "bandit",
+        "kimmel_unwa_ft2_bleedless.ckpt": "mel_band_roformer",
+        "mel_band_roformer_karaoke_becruily.ckpt": "mel_band_roformer",
+        "BS_ResurrectioN.ckpt": "bs_roformer",
+        "logic_roformer.pt": "bs_roformer",
+        "bs_roformer_karaoke_frazer_becruily.ckpt": "bs_roformer",
+        "dereverb_room_anvuew_sdr_13.7432.ckpt": "bs_roformer",
+        "BS-Roformer-Resurrection.ckpt": "bs_roformer",
+        "karaoke_bs_roformer_anvuew.ckpt": "bs_roformer",
+        "bs_karaoke_gabox_IS.ckpt": "bs_roformer",
+        "BS-Roformer-Resurrection-Inst.ckpt": "bs_roformer",
+        "bs_roformer_anvuew_sdr_12.45.ckpt": "bs_roformer",
+        "becruily_deux.ckpt": "mel_band_roformer",
+        "model_mel_band_roformer_ep_3_sdr_14.8359.ckpt": "mel_band_roformer",
+        "dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt": "bs_roformer"
+    },
+    "main_tracks": {
+        "BS_ResurrectioN.ckpt": "instrumental",
+        "logic_roformer.pt": "vocals",
+        "bs_roformer_karaoke_frazer_becruily.ckpt": "Vocals",
+        "dereverb_room_anvuew_sdr_13.7432.ckpt": "noreverb",
+        "MelBandRoformer_kim.ckpt": "vocals",
+        "mel_band_roformer_vocals_becruily.ckpt": "vocals",
+        "inst_v1e.ckpt": "instrumental",
+        "model_bs_roformer_ep_317_sdr_12.9755.ckpt": "Vocals",
+        "model_bs_roformer_ep_368_sdr_12.9628.ckpt": "Vocals",
+        "big_beta5e.ckpt": "vocals",
+        "kimmel_unwa_ft2_bleedless.ckpt": "vocals",
+        "mel_band_roformer_karaoke_becruily.ckpt": "Vocals",
+        "mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt": "karaoke",
+        "kar_gabox.ckpt": "karaoke",
+        "dereverb_mel_band_roformer_mono_anvuew_sdr_20.4029.ckpt": "noreverb",
+        "dereverb_echo_mbr_fused_0.5_v2_0.25_big_0.25_super.ckpt": "dry",
+        "dereverb_mel_band_roformer_anvuew_sdr_19.1729.ckpt": "noreverb",
+        "dereverb_mel_band_roformer_less_aggressive_anvuew_sdr_18.8050.ckpt": "noreverb",
+        "deverb_bs_roformer_8_384dim_10depth.ckpt": "noreverb",
+        "deverb_bs_roformer_8_256dim_8depth.ckpt": "noreverb",
+        "deverb_mel_band_roformer_8_256dim_6depth.ckpt": "noreverb",
+        "deverb_mel_band_roformer_8_512dim_12depth.ckpt": "noreverb",
+        "deverb_mel_band_roformer_ep_27_sdr_10.4567.ckpt": "noreverb",
+        "denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt": "dry",
+        "denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt": "dry",
+        "model_bandit_plus_dnr_sdr_11.47.chpt": "speech",
+        "bleed_suppressor_v1.ckpt": "instrumental",
+        "Apollo_LQ_MP3_restoration.ckpt": "restored",
+        "aspiration_mel_band_roformer_sdr_18.9845.ckpt": "other",
+        "aspiration_mel_band_roformer_less_aggr_sdr_18.1201.ckpt": "other",
+        "mel_band_roformer_crowd_aufr33_viperx_sdr_8.7144.ckpt": "instrumental",
+        "bs_roformer_male_female_by_aufr33_sdr_7.2889.ckpt": "female",
+        "BS-Roformer-Resurrection.ckpt": "vocals",
+        "karaoke_bs_roformer_anvuew.ckpt": "Vocals",
+        "bs_karaoke_gabox_IS.ckpt": "vocals",
+        "fused_model.ckpt": "Vocals",
+        "BS-Roformer-Resurrection-Inst.ckpt": "instrumental",
+        "bs_roformer_anvuew_sdr_12.45.ckpt": "vocals",
+        "becruily_deux.ckpt": "Vocals",
+        "denoisedebleed.ckpt": "",
+        "model_mdx23c_ep_7_sdr_14.4490.ckpt": "",
+        "model_mel_band_roformer_ep_3_sdr_14.8359.ckpt": "vocals",
+        "dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt": "noreverb"
+    },
+    "inference_env": ".\\env\\python.exe"
+}

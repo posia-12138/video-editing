@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 临时文件
+temp_output/
+*.tmp
+*.temp
+
+# 输出文件
+output/
+trimmed_videos/
+
+# 模型文件
+*.ckpt
+*.pth
+*.pt
+*.bin
+pretrain/
+models/
+
+# 日志
+*.log
+
+# IDE
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 测试文件
+test/
+*.test.mp4
+
+# 配置文件（包含 API key）
+config.json
+
+# 字幕与调试输出
+scripts/output/
+**/kimi_debug/
+*.srt
+
+*.mp4
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.zip
+*.7z
+*.rar

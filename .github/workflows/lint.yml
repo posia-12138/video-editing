@@ -1,0 +1,23 @@
+name: Syntax Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Check syntax
+        run: |
+          python -m py_compile run_all.py
+          python -m py_compile scripts/001remove_black.py
+          python -m py_compile scripts/002separate.py
+          python -m py_compile scripts/003subtitles.py
+          python -m py_compile scripts/004transition_simple.py

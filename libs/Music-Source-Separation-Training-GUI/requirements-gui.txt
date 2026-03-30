@@ -1,0 +1,4 @@
+psutil
+nvidia-ml-py
+PyQt5
+wmi
