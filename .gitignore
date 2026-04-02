@@ -88,3 +88,4 @@ scripts/output/
 # 示例项目（允许提交，作为效果参考）
 !assets/重生成为超级财阀/**
 !output/final/重生成为超级财阀/**
+!image-example/**
