@@ -31,7 +31,7 @@
 
 **本步骤**：检测视频头部的黑帧/低亮度帧，精准裁剪掉黑屏段落，让视频直接从有效内容开始。
 
-<img src="image-example/001示例/分镜首帧的黑幕1.jpg" height="180"> <img src="image-example/001示例/分镜首帧的黑幕2.jpg" height="180">
+<img src="image-example/001示例/分镜首帧的黑幕1.jpg" width="180"> <img src="image-example/001示例/分镜首帧的黑幕2.jpg" width="320">
 
 ---
 
@@ -61,7 +61,7 @@
 3. **硬字幕检测**：调用大模型分析视频，识别哪些时间段模型已生成了硬字幕——这些时间段跳过添加字幕，避免双重字幕叠加
 4. **字幕烧录**：将最终字幕文件烧录到视频
 
-<img src="image-example/004示例/视频模型生成的错误字幕1.png" height="180"> <img src="image-example/004示例/视频模型生成的错误字幕2.png" height="180">
+<img src="image-example/004示例/视频模型生成的错误字幕1.png" width="300"> <img src="image-example/004示例/视频模型生成的错误字幕2.png" width="300">
 
 ---
 
