@@ -33,8 +33,8 @@
 
 <table>
 <tr>
-<td width="36%" align="center"><img src="image-example/001示例/分镜首帧的黑幕1.png" width="100%"><br><sub>六宫格分镜图：第一幕为黑屏</sub></td>
-<td width="64%" align="center"><img src="image-example/001示例/分镜首帧的黑幕2.jpg" width="100%"><br><sub>九宫格分镜图：第一幕为黑屏</sub></td>
+<td align="center"><img src="image-example/001示例/分镜首帧的黑幕1.png"><br><sub>六宫格分镜图：第一幕为黑屏</sub></td>
+<td align="center"><img src="image-example/001示例/分镜首帧的黑幕2.jpg"><br><sub>九宫格分镜图：第一幕为黑屏</sub></td>
 </tr>
 </table>
 
@@ -68,8 +68,8 @@
 
 <table>
 <tr>
-<td width="50%" align="center"><img src="image-example/004示例/视频模型生成的错误字幕1.png" width="100%"><br><sub>硬字幕示例：模型将台词直接烧录进画面</sub></td>
-<td width="50%" align="center"><img src="image-example/004示例/视频模型生成的错误字幕2.png" width="100%"><br><sub>硬字幕示例：即使标注无字幕仍会出现</sub></td>
+<td align="center"><img src="image-example/004示例/视频模型生成的错误字幕1.png"><br><sub>硬字幕示例：模型将台词直接烧录进画面</sub></td>
+<td align="center"><img src="image-example/004示例/视频模型生成的错误字幕2.png"><br><sub>硬字幕示例：即使标注无字幕仍会出现</sub></td>
 </tr>
 </table>
 
