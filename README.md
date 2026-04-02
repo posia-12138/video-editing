@@ -180,7 +180,6 @@ cp config-example.json config.json
 | 字段 | 必填 | 说明 |
 |------|------|------|
 | `kimi_api_key` | 是 | 步骤4 字幕断句纠错，申请：https://platform.moonshot.cn/ |
-| `deepseek_api_key` | 否 | 当前版本暂未启用，留空即可 |
 | `msst_conda_env` | 是 | 步骤2 使用的 conda 环境名，默认 `msst` |
 
 ---
