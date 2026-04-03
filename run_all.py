@@ -132,7 +132,7 @@ def get_video_duration(video_path):
     return 0.0
 
 
-def merge_and_adjust_subtitles(srt_files, output_srt, video_folder):
+def merge_and_adjust_subtitles(srt_files, output_srt, video_folder, config_path=None):
     """
     合并多个SRT文件并调整时间轴
     考虑转场效果导致的时间重叠
@@ -148,7 +148,8 @@ def merge_and_adjust_subtitles(srt_files, output_srt, video_folder):
         print(f"  {vf.name}: {dur:.2f}s")
 
     # 读取转场配置
-    config_path = Path(__file__).parent / "config-example.json"
+    if config_path is None:
+        config_path = Path('config.json') if Path('config.json').exists() else Path(__file__).parent / "config-example.json"
     with open(config_path, 'r', encoding='utf-8') as f:
         config = json.load(f)
 

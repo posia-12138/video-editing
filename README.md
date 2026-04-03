@@ -149,15 +149,12 @@ pip install librosa soundfile
 
 ### 4. 依赖库（libs/）
 
-```bash
-# 步骤2 声道分离
-git clone https://github.com/ZFTurbo/Music-Source-Separation-Training libs/Music-Source-Separation-Training-GUI
+两个依赖库的代码已随项目一起提交，克隆项目后无需额外 clone：
 
-# 步骤4 语音识别
-git clone https://github.com/QwenLM/Qwen3-ASR libs/Qwen3-ASR
-```
+- `libs/Music-Source-Separation-Training-GUI/` — 步骤2 声道分离（来源：[ZFTurbo/Music-Source-Separation-Training](https://github.com/ZFTurbo/Music-Source-Separation-Training)）
+- `libs/Qwen3-ASR/` — 步骤4 语音识别（来源：[QwenLM/Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR)）
 
-下载声道分离模型权重（`.ckpt`）后放入 `libs/Music-Source-Separation-Training-GUI/pretrain/`。
+**仍需手动下载**：声道分离模型权重（`.ckpt`），放入 `libs/Music-Source-Separation-Training-GUI/pretrain/`。
 
 ### 5. Qwen3-ASR 模型（步骤4）
 
