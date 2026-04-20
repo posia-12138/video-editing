@@ -11,10 +11,10 @@
         ▼ 步骤2  声道分离 (002separate.py)
    修复：批量生成中偶发的背景音乐污染
         │
-        ▼ 步骤3  转场拼接 (004transition_v2.py)
+        ▼ 步骤3  转场拼接 (003transition_v2.py)
    修复：单次生成时长受限，片段需拼合 + 场景切换加黑场
         │
-        ▼ 步骤4  字幕生成与烧录 (003subtitles_simple.py)
+        ▼ 步骤4  字幕生成与烧录 (004subtitles_simple.py)
    修复：模型字幕效果不统一，需单独生成字幕
         │
         ▼ 步骤5  AI 选曲 + 剪映草稿 (select_music.py)
@@ -51,7 +51,7 @@
 
 ---
 
-### 步骤3 — 转场拼接（004transition_v2.py）
+### 步骤3 — 转场拼接（003transition_v2.py）
 
 **背景**：Seedance、Sora2 等主流视频生成模型对单次生成时长有限制（通常 15 秒/段），短剧一集需要将数十段片段拼合。直接 concat 最稳定，无需重新编码。此外，连续多段属于同一场景的片段直接拼接，而跨场景的片段之间应加入黑场过渡，以符合短剧的剪辑节奏。
 
@@ -59,7 +59,7 @@
 
 ---
 
-### 步骤4 — 字幕生成与烧录（003subtitles_simple.py）
+### 步骤4 — 字幕生成与烧录（004subtitles_simple.py）
 
 **背景**：使用 Seedance、Sora2 等模型生成视频时通常需要标注「无字幕」，因为每段生成的字幕样式不一致，且错别字较多。但即使标注了无字幕，部分片段仍会出现硬字幕（烧录在画面上）。
 
@@ -110,8 +110,8 @@
 ├── scripts/                      # 📜 核心脚本
 │   ├── 001remove_black.py        # 步骤1: 黑屏检测与裁剪
 │   ├── 002separate.py            # 步骤2: 人声分离（msst conda 环境）
-│   ├── 004transition_v2.py       # 步骤3: 转场拼接 + 场景检测
-│   ├── 003subtitles_simple.py    # 步骤4: ASR 字幕生成（Qwen3）
+│   ├── 003transition_v2.py       # 步骤3: 转场拼接 + 场景检测
+│   ├── 004subtitles_simple.py    # 步骤4: ASR 字幕生成（Qwen3）
 │   └── select_music.py           # 步骤5: AI 选曲 + 剪映草稿生成
 │
 ├── skills/                       # 🧠 AI 提示词
@@ -295,8 +295,8 @@ python scripts/tag_music.py --folder 音乐/风格分类/专辑名
 
 ```
 output/
-├── 004output/剧名/集数.mp4       # 转场拼接视频（无字幕）
-└── 003output/剧名/集数.mp4       # 字幕烧录视频
+├── 003output/剧名/集数.mp4       # 转场拼接视频（无字幕）
+└── 004output/剧名/集数.mp4       # 字幕烧录视频
 
 scripts/output/subtitle/剧名/集数/
 ├── 集数_qwen3_optimized.srt

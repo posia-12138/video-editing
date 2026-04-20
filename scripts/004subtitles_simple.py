@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 """
-003subtitles_simple.py — 003subtitles.py 的简化版本，供 run_all_v3.py 使用。
+004subtitles_simple.py — 004subtitles.py 的简化版本，供 run_all_v2.py 使用。
 
 与完整版的唯一区别：跳过 kimi_filter_hardcoded_subs（kimi-k2.5 视频扫描）。
 Kimi 断句 + 纠错（moonshot-v1-32k 纯文字）仍然保留。
 
-用法与 003subtitles.py 完全相同，参数接口一致。
+用法与 004subtitles.py 完全相同，参数接口一致。
 """
 
 import sys
 from pathlib import Path
 
-# 把 003subtitles.py 所在目录加入 sys.path，确保能 import
+# 把 004subtitles.py 所在目录加入 sys.path，确保能 import
 _here = Path(__file__).parent
 if str(_here) not in sys.path:
     sys.path.insert(0, str(_here))
 
 import importlib.util as _ilu
 
-# 动态加载 003subtitles（文件名以数字开头，不能直接 import）
-_spec = _ilu.spec_from_file_location("subtitles_full", _here / "003subtitles.py")
+# 动态加载 004subtitles（文件名以数字开头，不能直接 import）
+_spec = _ilu.spec_from_file_location("subtitles_full", _here / "004subtitles.py")
 _mod = _ilu.module_from_spec(_spec)
 _spec.loader.exec_module(_mod)
 

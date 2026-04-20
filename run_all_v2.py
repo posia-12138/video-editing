@@ -118,10 +118,10 @@ def parse_srt_file(srt_path):
     return subtitles
 
 
-def create_jianying_draft(output_004, srt_path, bgm_path, draft_name, config):
+def create_jianying_draft(output_003, srt_path, bgm_path, draft_name, config):
     """
     创建剪映草稿，包含三条可编辑轨道：
-      视频  — output_004（已含混合BGM的音频，直接作为视频素材）
+      视频  — output_003（已含混合BGM的音频，直接作为视频素材）
       BGM   — 原始音乐文件（独立音频轨，可替换/调音量）
       字幕  — SRT 逐句解析为文本片段
     """
@@ -161,10 +161,10 @@ def create_jianying_draft(output_004, srt_path, bgm_path, draft_name, config):
 
         # 1. 视频轨道
         video_duration_sec = 0.0
-        if output_004 and output_004.exists():
-            video_duration_sec = get_video_duration(output_004)
-            project.add_media_safe(str(output_004), start_time="0s", track_name="视频")
-            print(f"  ✅ 视频轨道: {output_004.name} ({video_duration_sec:.1f}s)")
+        if output_003 and output_003.exists():
+            video_duration_sec = get_video_duration(output_003)
+            project.add_media_safe(str(output_003), start_time="0s", track_name="视频")
+            print(f"  ✅ 视频轨道: {output_003.name} ({video_duration_sec:.1f}s)")
 
         # 2. BGM 音乐轨道（截断到视频时长）
         if bgm_path and bgm_path.exists():
@@ -207,7 +207,7 @@ def create_jianying_draft(output_004, srt_path, bgm_path, draft_name, config):
             # 媒体文件放在草稿目录内
             mac_media_dir = f"{mac_sync}/{draft_sub}/{draft_name}"
 
-            for media in [output_004, bgm_path]:
+            for media in [output_003, bgm_path]:
                 if media and Path(media).exists():
                     _shutil.copy2(media, draft_dir / Path(media).name)
                     print(f"  📁 媒体文件 → 草稿目录: {Path(media).name}")
@@ -812,26 +812,26 @@ def main():
         assets_path = base_dir / config['paths']['assets']
         relative_path = folder.relative_to(assets_path)
 
-        # 004output: 转场后的视频（未烧录字幕），保持与assets相同的目录结构
+        # 003output: 转场后的视频（未烧录字幕），保持与assets相同的目录结构
         # 例如：assets/高手下山：美女请留步/高手下山，美女请留步01
-        #   -> output/004output/高手下山：美女请留步/高手下山，美女请留步01.mp4
-        output_004_dir = base_dir / config['paths']['output'] / "004output" / relative_path.parent
-        output_004_dir.mkdir(parents=True, exist_ok=True)
-        output_004 = output_004_dir / f"{folder.name}.mp4"
-
-        # 003output: 字幕烧录后的最终视频，保持与assets相同的目录结构
+        #   -> output/003output/高手下山：美女请留步/高手下山，美女请留步01.mp4
         output_003_dir = base_dir / config['paths']['output'] / "003output" / relative_path.parent
         output_003_dir.mkdir(parents=True, exist_ok=True)
-        final_output = output_003_dir / f"{folder.name}.mp4"
+        output_003 = output_003_dir / f"{folder.name}.mp4"
+
+        # 004output: 字幕烧录后的最终视频，保持与assets相同的目录结构
+        output_004_dir = base_dir / config['paths']['output'] / "004output" / relative_path.parent
+        output_004_dir.mkdir(parents=True, exist_ok=True)
+        final_output = output_004_dir / f"{folder.name}.mp4"
     except ValueError:
         # 如果不在assets下，使用简化的输出结构
-        output_004_dir = base_dir / config['paths']['output'] / "004output"
-        output_004_dir.mkdir(parents=True, exist_ok=True)
-        output_004 = output_004_dir / f"{folder.name}.mp4"
-
         output_003_dir = base_dir / config['paths']['output'] / "003output"
         output_003_dir.mkdir(parents=True, exist_ok=True)
-        final_output = output_003_dir / f"{folder.name}.mp4"
+        output_003 = output_003_dir / f"{folder.name}.mp4"
+
+        output_004_dir = base_dir / config['paths']['output'] / "004output"
+        output_004_dir.mkdir(parents=True, exist_ok=True)
+        final_output = output_004_dir / f"{folder.name}.mp4"
     
     # temp_output 也按照 assets 目录结构组织
     try:
@@ -1076,7 +1076,7 @@ def main():
         cmd = [
             sys.executable, str(script),
             '--folder', str(transition_input_dir),
-            '-o', str(output_004)  # 输出到 004output
+            '-o', str(output_003)  # 输出到 003output
         ]
 
         # 传入剧本路径，避免退化到阈值模式
@@ -1095,25 +1095,25 @@ def main():
         if result.returncode == 0:
             print(f"\n{'='*60}")
             print(f"✅ 视频拼接完成！")
-            print(f"📁 转场输出: {output_004}")
+            print(f"📁 转场输出: {output_003}")
             print(f"{'='*60}")
 
-            # 给 004output 也添加封面（与最终视频保持一致）
-            cover_image_004 = None
+            # 给 003output 也添加封面（与最终视频保持一致）
+            cover_image_003 = None
             for ext in ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']:
                 cover_path = folder / f"封面{ext}"
                 if cover_path.exists():
-                    cover_image_004 = cover_path
+                    cover_image_003 = cover_path
                     break
 
-            if cover_image_004 and output_004.exists():
-                print(f"\n📸 给004output添加封面: {cover_image_004.name}")
-                temp_004_cover = output_004.parent / f"temp_cover_{output_004.name}"
+            if cover_image_003 and output_003.exists():
+                print(f"\n📸 给003output添加封面: {cover_image_003.name}")
+                temp_003_cover = output_003.parent / f"temp_cover_{output_003.name}"
                 cmd_cover = [
                     'ffmpeg', '-y',
                     '-loop', '1', '-t', '0.033',
-                    '-i', str(cover_image_004),
-                    '-i', str(output_004),
+                    '-i', str(cover_image_003),
+                    '-i', str(output_003),
                     '-filter_complex',
                     '[0:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,fps=30[cover];'
                     '[1:v]fps=30[video];'
@@ -1122,17 +1122,17 @@ def main():
                     '-map', '[outv]', '-map', '[outa]',
                     '-c:v', 'libx264', '-preset', 'medium', '-crf', '23',
                     '-c:a', 'aac', '-b:a', '192k',
-                    str(temp_004_cover)
+                    str(temp_003_cover)
                 ]
                 r = subprocess.run(cmd_cover, capture_output=True)
-                if r.returncode == 0 and temp_004_cover.exists():
+                if r.returncode == 0 and temp_003_cover.exists():
                     import shutil
-                    shutil.move(str(temp_004_cover), str(output_004))
-                    print(f"   ✅ 004output封面添加成功")
+                    shutil.move(str(temp_003_cover), str(output_003))
+                    print(f"   ✅ 003output封面添加成功")
                 else:
-                    print(f"   ⚠️  004output封面添加失败，保留原视频")
-                    if temp_004_cover.exists():
-                        temp_004_cover.unlink()
+                    print(f"   ⚠️  003output封面添加失败，保留原视频")
+                    if temp_003_cover.exists():
+                        temp_003_cover.unlink()
         else:
             print(f"\n❌ 拼接失败")
             sys.exit(1)
@@ -1154,7 +1154,7 @@ def main():
             print(f"从文件夹名提取集数: {episode_number}")
 
         # 处理拼接后的完整视频
-        print(f"处理拼接后的视频: {output_004.name}")
+        print(f"处理拼接后的视频: {output_003.name}")
 
         # 传递配置文件的绝对路径
         config_path = base_dir / args.config
@@ -1171,7 +1171,7 @@ def main():
         
         cmd = [
             sys.executable, str(script),
-            '--video', str(output_004.absolute()),
+            '--video', str(output_003.absolute()),
             '--config', str(config_path.absolute()),
             '--output-dir', str(subtitle_output_dir.absolute()),
         ]
@@ -1190,7 +1190,7 @@ def main():
             # 字幕烧录后的视频应该已经输出到 video 子目录
             # 检查是否生成成功
             video_output_dir = subtitle_output_dir / "video"
-            expected_output = video_output_dir / output_004.name
+            expected_output = video_output_dir / output_003.name
             
             if expected_output.exists():
                 # 查找封面图片
